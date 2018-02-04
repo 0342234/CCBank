@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C205" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavoriteCurrencies" representedClassName="FavoriteCurrencies" syncable="YES">
+        <attribute name="currencies" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="GroupedCurrencies" representedClassName="GroupedCurrencies" syncable="YES">
+        <attribute name="addingDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="hundredCurrencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HundredCCurrencies" inverseName="grouped" inverseEntity="HundredCCurrencies" syncable="YES"/>
+    </entity>
+    <entity name="HundredCCurrencies" representedClassName="HundredCCurrencies" syncable="YES">
+        <attribute name="capitalization" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dailyPercentChanges" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hourPercentChanges" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="rank" attributeType="String" syncable="YES"/>
+        <attribute name="usdValue" attributeType="String" syncable="YES"/>
+        <relationship name="grouped" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupedCurrencies" inverseName="hundredCurrencies" inverseEntity="GroupedCurrencies" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="FavoriteCurrencies" positionX="-63" positionY="27" width="128" height="60"/>
+        <element name="GroupedCurrencies" positionX="-63" positionY="27" width="128" height="75"/>
+        <element name="HundredCCurrencies" positionX="-72" positionY="-18" width="137" height="150"/>
+    </elements>
+</model>
