@@ -33,4 +33,3 @@ class AddUser {
     }
 }
 
-var u = 0

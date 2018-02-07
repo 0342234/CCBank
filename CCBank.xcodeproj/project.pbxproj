@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0903D1982029C14B00C0C5F5 /* FirAuthErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D1972029C14B00C0C5F5 /* FirAuthErrorHandling.swift */; };
+		0903D19A2029F0FC00C0C5F5 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D1992029F0FC00C0C5F5 /* AlertView.swift */; };
+		0903D19C2029F10E00C0C5F5 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0903D19B2029F10E00C0C5F5 /* AlertView.xib */; };
+		0903D19E2029F40400C0C5F5 /* ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D19D2029F40400C0C5F5 /* ViewFromNib.swift */; };
 		090840E71FFBA07F0065C2CC /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090840E61FFBA07F0065C2CC /* HistoryViewController.swift */; };
 		090840EA1FFBBC100065C2CC /* SelectedHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090840E81FFBBC100065C2CC /* SelectedHistoryCell.swift */; };
 		090840EB1FFBBC100065C2CC /* SelectedHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090840E91FFBBC100065C2CC /* SelectedHistoryCell.xib */; };
@@ -52,6 +56,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0903D1972029C14B00C0C5F5 /* FirAuthErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirAuthErrorHandling.swift; sourceTree = "<group>"; };
+		0903D1992029F0FC00C0C5F5 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		0903D19B2029F10E00C0C5F5 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
+		0903D19D2029F40400C0C5F5 /* ViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFromNib.swift; sourceTree = "<group>"; };
 		090840E61FFBA07F0065C2CC /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		090840E81FFBBC100065C2CC /* SelectedHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedHistoryCell.swift; sourceTree = "<group>"; };
 		090840E91FFBBC100065C2CC /* SelectedHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedHistoryCell.xib; sourceTree = "<group>"; };
@@ -162,6 +170,7 @@
 				097CF1731FED0E5500202FCD /* CurrenciesDataManger.swift */,
 				09A766C2201B6279009534C0 /* FirebaseReference.swift */,
 				09A766C4201B6280009534C0 /* AddUser.swift */,
+				0903D1972029C14B00C0C5F5 /* FirAuthErrorHandling.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,6 +224,15 @@
 			path = CCBank;
 			sourceTree = "<group>";
 		};
+		098357F5202B19F600CF797B /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				0903D1992029F0FC00C0C5F5 /* AlertView.swift */,
+				0903D19B2029F10E00C0C5F5 /* AlertView.xib */,
+			);
+			path = AlertView;
+			sourceTree = "<group>";
+		};
 		09A766BB201B6241009534C0 /* LoginControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				09D7ADC81FED291300EF6684 /* Cells */,
+				098357F5202B19F600CF797B /* AlertView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +277,7 @@
 				09DF5DF4200F989300027E39 /* AnimateLableExtension.swift */,
 				096BF75A2023793C00E98854 /* RoundButton.swift */,
 				096BF75C2024746600E98854 /* ClosureInit.swift */,
+				0903D19D2029F40400C0C5F5 /* ViewFromNib.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -369,6 +389,7 @@
 				096BF756202209B800E98854 /* MessageTableViewCell.xib in Resources */,
 				09D7ADCA1FED291F00EF6684 /* CurrenciesListTableViewCell.xib in Resources */,
 				09CA3ACD200632E000C35C26 /* HistoryTableViewCell.xib in Resources */,
+				0903D19C2029F10E00C0C5F5 /* AlertView.xib in Resources */,
 				097CF1641FED0D0F00202FCD /* Main.storyboard in Resources */,
 				09A766BA201B6121009534C0 /* GoogleService-Info.plist in Resources */,
 			);
@@ -448,6 +469,7 @@
 				09E690111FF681F300B2A0C1 /* PersistenceService.swift in Sources */,
 				09A766BF201B6261009534C0 /* LoginViewController.swift in Sources */,
 				09CD6FE62018901800878E03 /* FavoriteCurrencies+CoreDataProperties.swift in Sources */,
+				0903D19E2029F40400C0C5F5 /* ViewFromNib.swift in Sources */,
 				09CD6FEA2018901800878E03 /* HundredCCurrencies+CoreDataProperties.swift in Sources */,
 				09CD6FE92018901800878E03 /* GroupedCurrencies+CoreDataClass.swift in Sources */,
 				09BB1EFB1FFE903B00A15C1E /* SelectedHistoryController.swift in Sources */,
@@ -463,6 +485,7 @@
 				097CF1741FED0E5500202FCD /* CurrenciesDataManger.swift in Sources */,
 				09CA3ACF2006337D00C35C26 /* DateExtension.swift in Sources */,
 				09CA3ACC200632E000C35C26 /* HistoryTableViewCell.swift in Sources */,
+				0903D1982029C14B00C0C5F5 /* FirAuthErrorHandling.swift in Sources */,
 				09CA3AD3200635EE00C35C26 /* CurrenciesModel.swift in Sources */,
 				097CF15F1FED0D0F00202FCD /* AppDelegate.swift in Sources */,
 				090840E71FFBA07F0065C2CC /* HistoryViewController.swift in Sources */,
@@ -473,6 +496,7 @@
 				096BF75D2024746600E98854 /* ClosureInit.swift in Sources */,
 				096BF74E2020634400E98854 /* ChannelsTableViewCell.swift in Sources */,
 				096BF74B201F765400E98854 /* ChatViewController.swift in Sources */,
+				0903D19A2029F0FC00C0C5F5 /* AlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
