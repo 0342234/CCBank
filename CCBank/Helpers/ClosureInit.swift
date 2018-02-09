@@ -9,8 +9,14 @@
 import Foundation
 import UIKit
 
-protocol ClosureInit {}
-extension NSObject: ClosureInit {}
+protocol ClosureInit {
+    
+}
+
+extension NSObject: ClosureInit {
+    
+}
+
 extension ClosureInit where Self : NSObject {
     init(closure: (Self) -> Void) {
         self.init()

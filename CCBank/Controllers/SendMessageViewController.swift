@@ -9,41 +9,26 @@
 import UIKit
 import Firebase
 
-struct PostMessage {
-    let text: String!
-}
-
 class SendMessageViewController: UIViewController, UITextFieldDelegate {
-        
+    
     @IBOutlet weak var messageTextField: UITextField!
-        var chatID : String?
     
-    let reference: DatabaseReference = {
-        return Database.database().reference()
-        }()
-    
-    let uid: String?  = { Auth.auth().currentUser?.uid }()
+    var chatID : String!
+    var uid: String! = { return Auth.auth().currentUser?.uid }()
+    var threadReference: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTextField.delegate = self
+        threadReference =  FirebaseReferences.currentThread(threadID: chatID).reference()
         
     }
     
     @IBAction func messageSendAction(_ sender: UIButton) {
         let timestamp = Date().currentTimestamp()
         let message = messageTextField.text ?? ""
-        let uid = self.uid ?? "undefined"
+        let uid = self.uid
         let messageObject = Message(payload: message , timestamp: timestamp, userID: uid)
-        
-        reference.child("threads").child(chatID!).child("messages").childByAutoId().updateChildValues(messageObject.dictionaryInterpritation)
+        threadReference.child("messages").childByAutoId().updateChildValues(messageObject.dictionaryInterpritation)
     }
-
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        return true
-//    }
-    
-
-
-
 }

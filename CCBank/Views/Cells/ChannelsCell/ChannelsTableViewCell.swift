@@ -10,17 +10,23 @@ import UIKit
 
 class ChannelsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var chatName: UILabel!
+    @IBOutlet weak var threadTitle: UILabel!
+    @IBOutlet weak var numberOfUsers: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+    }
+    
+    func setupCell(threadTitle: String, numberOfUsers: Int) {
+        self.threadTitle.text = threadTitle
+        self.numberOfUsers.text = " Users: \(String(describing: numberOfUsers)) "
     }
     
 }

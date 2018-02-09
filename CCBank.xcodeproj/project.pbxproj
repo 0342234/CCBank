@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0903D1982029C14B00C0C5F5 /* FirAuthErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D1972029C14B00C0C5F5 /* FirAuthErrorHandling.swift */; };
+		0903D1982029C14B00C0C5F5 /* HandleAuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D1972029C14B00C0C5F5 /* HandleAuthErrors.swift */; };
 		0903D19A2029F0FC00C0C5F5 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D1992029F0FC00C0C5F5 /* AlertView.swift */; };
 		0903D19C2029F10E00C0C5F5 /* AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0903D19B2029F10E00C0C5F5 /* AlertView.xib */; };
 		0903D19E2029F40400C0C5F5 /* ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D19D2029F40400C0C5F5 /* ViewFromNib.swift */; };
@@ -50,13 +50,15 @@
 		09CD6FEB2018901800878E03 /* FavoriteCurrencies+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CD6FE52018901800878E03 /* FavoriteCurrencies+CoreDataClass.swift */; };
 		09D7ADCA1FED291F00EF6684 /* CurrenciesListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D7ADC91FED291F00EF6684 /* CurrenciesListTableViewCell.xib */; };
 		09D7ADCC1FED292A00EF6684 /* CurrenciesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7ADCB1FED292A00EF6684 /* CurrenciesListTableViewCell.swift */; };
+		09DD6237202B6E7000A12372 /* ThreadModel .swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DD6236202B6E7000A12372 /* ThreadModel .swift */; };
+		09DD6239202B6EBF00A12372 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DD6238202B6EBF00A12372 /* MessageModel.swift */; };
 		09DF5DF5200F989300027E39 /* AnimateLableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF5DF4200F989300027E39 /* AnimateLableExtension.swift */; };
 		09E690111FF681F300B2A0C1 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E690101FF681F300B2A0C1 /* PersistenceService.swift */; };
 		D2FEDE8552D3CE5A343454F2 /* Pods_CCBank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF4CEA1C7155468ED2865172 /* Pods_CCBank.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0903D1972029C14B00C0C5F5 /* FirAuthErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirAuthErrorHandling.swift; sourceTree = "<group>"; };
+		0903D1972029C14B00C0C5F5 /* HandleAuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleAuthErrors.swift; sourceTree = "<group>"; };
 		0903D1992029F0FC00C0C5F5 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		0903D19B2029F10E00C0C5F5 /* AlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		0903D19D2029F40400C0C5F5 /* ViewFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFromNib.swift; sourceTree = "<group>"; };
@@ -101,6 +103,8 @@
 		09CD6FE52018901800878E03 /* FavoriteCurrencies+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FavoriteCurrencies+CoreDataClass.swift"; sourceTree = "<group>"; };
 		09D7ADC91FED291F00EF6684 /* CurrenciesListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrenciesListTableViewCell.xib; sourceTree = "<group>"; };
 		09D7ADCB1FED292A00EF6684 /* CurrenciesListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListTableViewCell.swift; sourceTree = "<group>"; };
+		09DD6236202B6E7000A12372 /* ThreadModel .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThreadModel .swift"; sourceTree = "<group>"; };
+		09DD6238202B6EBF00A12372 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		09DF5DF4200F989300027E39 /* AnimateLableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateLableExtension.swift; sourceTree = "<group>"; };
 		09E690101FF681F300B2A0C1 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		11AA3B39255B4E950C0E6EAE /* Pods-CCBank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBank.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCBank/Pods-CCBank.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,9 +172,7 @@
 				09E690101FF681F300B2A0C1 /* PersistenceService.swift */,
 				09CA3AD2200635EE00C35C26 /* CurrenciesModel.swift */,
 				097CF1731FED0E5500202FCD /* CurrenciesDataManger.swift */,
-				09A766C2201B6279009534C0 /* FirebaseReference.swift */,
-				09A766C4201B6280009534C0 /* AddUser.swift */,
-				0903D1972029C14B00C0C5F5 /* FirAuthErrorHandling.swift */,
+				09DD623A202B6F5000A12372 /* FirebaseModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -301,6 +303,18 @@
 				096BF757202209BE00E98854 /* MessageCell */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		09DD623A202B6F5000A12372 /* FirebaseModels */ = {
+			isa = PBXGroup;
+			children = (
+				09A766C2201B6279009534C0 /* FirebaseReference.swift */,
+				09A766C4201B6280009534C0 /* AddUser.swift */,
+				09DD6236202B6E7000A12372 /* ThreadModel .swift */,
+				09DD6238202B6EBF00A12372 /* MessageModel.swift */,
+				0903D1972029C14B00C0C5F5 /* HandleAuthErrors.swift */,
+			);
+			path = FirebaseModels;
 			sourceTree = "<group>";
 		};
 		8ABBECB0EFBA38B717A7792A /* Pods */ = {
@@ -476,6 +490,7 @@
 				09DF5DF5200F989300027E39 /* AnimateLableExtension.swift in Sources */,
 				09CD6FE72018901800878E03 /* HundredCCurrencies+CoreDataClass.swift in Sources */,
 				09CD6FEB2018901800878E03 /* FavoriteCurrencies+CoreDataClass.swift in Sources */,
+				09DD6237202B6E7000A12372 /* ThreadModel .swift in Sources */,
 				093ED59D1FFBE5C50043EB9A /* InitialScreenController.swift in Sources */,
 				097CF1611FED0D0F00202FCD /* CurrenciesListController.swift in Sources */,
 				09387124201B429E00F0D3F1 /* InternetReachability.swift in Sources */,
@@ -485,8 +500,9 @@
 				097CF1741FED0E5500202FCD /* CurrenciesDataManger.swift in Sources */,
 				09CA3ACF2006337D00C35C26 /* DateExtension.swift in Sources */,
 				09CA3ACC200632E000C35C26 /* HistoryTableViewCell.swift in Sources */,
-				0903D1982029C14B00C0C5F5 /* FirAuthErrorHandling.swift in Sources */,
+				0903D1982029C14B00C0C5F5 /* HandleAuthErrors.swift in Sources */,
 				09CA3AD3200635EE00C35C26 /* CurrenciesModel.swift in Sources */,
+				09DD6239202B6EBF00A12372 /* MessageModel.swift in Sources */,
 				097CF15F1FED0D0F00202FCD /* AppDelegate.swift in Sources */,
 				090840E71FFBA07F0065C2CC /* HistoryViewController.swift in Sources */,
 				090840EA1FFBBC100065C2CC /* SelectedHistoryCell.swift in Sources */,

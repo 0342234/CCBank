@@ -11,7 +11,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-SemiBold</string>
+            <string>AppleSDGothicNeo-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -27,21 +27,21 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="I43-Li-SVP">
-                    <rect key="frame" x="26" y="257" width="323" height="280"/>
+                <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="I43-Li-SVP">
+                    <rect key="frame" x="26" y="264" width="323" height="278"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtO-mI-x6J">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="rtO-mI-x6J">
                             <rect key="frame" x="0.0" y="0.0" width="323" height="165"/>
                             <color key="backgroundColor" red="0.16862745100000001" green="0.16862745100000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="165" id="yKb-Fv-fiL"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="25"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mph-UG-8wz">
-                            <rect key="frame" x="0.0" y="200" width="323" height="80"/>
+                            <rect key="frame" x="0.0" y="198" width="323" height="80"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bJ-Hd-Dps">
                                     <rect key="frame" x="121.5" y="0.0" width="80" height="80"/>
@@ -50,7 +50,7 @@
                                         <constraint firstAttribute="width" priority="750" constant="80" id="LFt-NG-Hms"/>
                                         <constraint firstAttribute="height" constant="80" id="vPP-TS-NKO"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                     <state key="normal" title="OK">
                                         <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </state>
@@ -65,7 +65,7 @@
             </subviews>
             <constraints>
                 <constraint firstItem="I43-Li-SVP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="26" id="557-e7-LQT"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="I43-Li-SVP" secondAttribute="bottom" constant="130" id="6Y6-di-Sx4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="I43-Li-SVP" secondAttribute="bottom" constant="125" id="6Y6-di-Sx4"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="I43-Li-SVP" secondAttribute="trailing" constant="26" id="GlW-BH-wEQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

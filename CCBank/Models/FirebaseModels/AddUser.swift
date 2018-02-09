@@ -10,16 +10,19 @@ import Foundation
 import Firebase
 
 class AddUser {
-    var username: String
-    var uid: String
-    var email: String
+    let username: String
+    let uid: String
+    let email: String
+    
+    
     init(username: String, uid: String, email: String) {
         self.username = username
         self.uid = uid
         self.email = email
     }
     
-    func toDictionary()-> [String: Any] {
+    var toDictionary: [String: Any]
+    {
         return [
             "uid" : uid,
             "username" : username,
@@ -28,8 +31,12 @@ class AddUser {
     }
     
     func save() {
-        let ref = GetDatabaseReference.users(uid: uid).reference()
-        ref.setValue(toDictionary())
+        let ref = FirebaseReferences.users.reference()
+        ref.child(uid).setValue(toDictionary)
     }
+
+   
+
 }
+
 

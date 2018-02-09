@@ -9,34 +9,24 @@
 import UIKit
 import Firebase
 
-struct Message: Codable {
-    var payload: String!
-    var timestamp: Int!
-    var userID: String!
-    
-    var dictionaryInterpritation: [String: Any] {
-        return [
-            "payload" : payload,
-            "timestamp" : timestamp,
-            "userID" : userID
-        ]
-    }
-}
+
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var containerViewOutlet: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    var ref: DatabaseReference! = { return Database.database().reference() }()
+    var chatReference: DatabaseReference!
     let userID: String = { return  Auth.auth().currentUser!.uid }()
-    var chatID: String! = ""
+    var threadID: String! = ""
     var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        chatReference = FirebaseReferences.currentThread(threadID: self.threadID).reference()
+        
 
-ref.child("threads").child(chatID).child("messages").queryOrderedByKey().observe(.value) { (snapshot) in
+chatReference.child("messages").queryOrderedByKey().observe(.value) { (snapshot) in
     self.messages = []
             if snapshot.exists() {
                 for child in snapshot.value as! NSDictionary {
@@ -47,7 +37,6 @@ ref.child("threads").child(chatID).child("messages").queryOrderedByKey().observe
                         let userID = messageObject["userID"] as? String ?? " Unknown"
                         let getData = Message(payload: message, timestamp: timestamp , userID: userID)
                         self.messages.append(getData)
-                        print("getData", getData)
                     }
                     self.tableView.reloadData()
                 }
@@ -76,7 +65,7 @@ ref.child("threads").child(chatID).child("messages").queryOrderedByKey().observe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? SendMessageViewController else { return }
-        vc.chatID = chatID
+        guard let messageContainerController = segue.destination as? SendMessageViewController else { return }
+        messageContainerController.chatID = threadID
     }
 }

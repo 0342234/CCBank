@@ -17,6 +17,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     var fetchedResultController: NSFetchedResultsController<NSFetchRequestResult>!
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         initializteFetchResultController()
         fetchedResultController.delegate = self

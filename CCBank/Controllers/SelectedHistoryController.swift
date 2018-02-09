@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
-   
+    
     var searchController = UISearchController()
     var resultsTableView = UITableViewController()
     
@@ -23,7 +23,7 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
     private var filteredDataSource: [HundredCCurrencies] = []
     
     var hundredObjects : [HundredCCurrencies]?
-   
+    
     @IBOutlet weak var tableView: UITableView!
     var cellExpanded = false
     var expandedRows = Set<Int>()
@@ -40,7 +40,7 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
         let cellCurrencyCopy = UINib(nibName: "SelectedHistoryCell", bundle: nil)
         self.tableView.register(cellCurrencyCopy, forCellReuseIdentifier: "SelectedHistoryCell")
         self.title = groupedCurrencies?.addingDate.toString(dateFormat: "MMM d, h:mm a") ?? "Undefinded date"
-           resultsTableView.tableView.register(cellCurrencyCopy, forCellReuseIdentifier: "SelectedHistoryCell")
+        resultsTableView.tableView.register(cellCurrencyCopy, forCellReuseIdentifier: "SelectedHistoryCell")
         searchController = UISearchController(searchResultsController: resultsTableView)
         searchController.searchResultsUpdater = self
         if var frame = navigationController?.navigationBar.frame {
@@ -60,7 +60,7 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
             return model.name.contains(searchController.searchBar.text!)})
         resultsTableView.tableView.reloadData()
     }
-
+    
     // MARK:  Table View Methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -69,10 +69,10 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == resultsTableView.tableView {
-         return filteredDataSource.count
+            return filteredDataSource.count
         } else {
-        return groupedCurrencies?.hundredCurrencies?.count ?? 0
-    }
+            return groupedCurrencies?.hundredCurrencies?.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

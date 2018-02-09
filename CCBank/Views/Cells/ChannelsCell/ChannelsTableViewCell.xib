@@ -26,17 +26,31 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rvs-zZ-PUJ">
+                        <rect key="frame" x="158" y="15" width="150" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="vji-cV-KKa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tVX-ey-8qc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="2ZJ-to-mM6"/>
+                    <constraint firstItem="Rvs-zZ-PUJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="4" id="JCI-X1-zoL"/>
                     <constraint firstItem="tVX-ey-8qc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="PhA-2C-yNv"/>
                     <constraint firstAttribute="bottomMargin" secondItem="tVX-ey-8qc" secondAttribute="bottom" id="Tkc-yF-KJV"/>
                     <constraint firstItem="tVX-ey-8qc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="fwT-Z4-heL"/>
+                    <constraint firstItem="Rvs-zZ-PUJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="m2c-mm-MbO"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Rvs-zZ-PUJ" secondAttribute="bottom" constant="4" id="rBp-kN-YW6"/>
+                    <constraint firstItem="tVX-ey-8qc" firstAttribute="centerY" secondItem="Rvs-zZ-PUJ" secondAttribute="centerY" id="sRK-u6-1ai"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="chatName" destination="tVX-ey-8qc" id="bZw-bX-G03"/>
+                <outlet property="numberOfUsers" destination="Rvs-zZ-PUJ" id="dIA-H1-SzT"/>
+                <outlet property="threadTitle" destination="tVX-ey-8qc" id="bZw-bX-G03"/>
             </connections>
         </tableViewCell>
     </objects>

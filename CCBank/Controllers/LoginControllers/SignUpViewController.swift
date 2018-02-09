@@ -44,21 +44,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             self.view.addSubview(alertView)
             return
         }
-
-            Auth.auth().createUser(withEmail: email, password: password, completion: { (fixrabaseUser, error) in
-                if error == nil {
-                    let newUser = AddUser(username: nickname, uid: (fixrabaseUser?.uid)!, email: email)
-                    newUser.save()
-                    Auth.auth().signIn(withEmail: email, password: password, completion: { (firebaseUser, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            self.dismiss(animated: true, completion: nil)
-                        }
-                    })
-                } else { self.handleError(error!) }
-            })
-        }
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (firebaseUser, error) in
+            if error == nil {
+                let newUser = AddUser(username: nickname, uid: (firebaseUser?.uid)!, email: email)
+                newUser.save()
+                Auth.auth().signIn(withEmail: email, password: password, completion: { (firebaseUser, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                })
+            } else { self.handleError(error!) }
+        })
+    }
     
     
     func handleError(_ error: Error) {
