@@ -36,13 +36,13 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
         tableView.delegate = self
         tableView.dataSource = self
         
-        
         let cellCurrencyCopy = UINib(nibName: "SelectedHistoryCell", bundle: nil)
         self.tableView.register(cellCurrencyCopy, forCellReuseIdentifier: "SelectedHistoryCell")
         self.title = groupedCurrencies?.addingDate.toString(dateFormat: "MMM d, h:mm a") ?? "Undefinded date"
         resultsTableView.tableView.register(cellCurrencyCopy, forCellReuseIdentifier: "SelectedHistoryCell")
         searchController = UISearchController(searchResultsController: resultsTableView)
         searchController.searchResultsUpdater = self
+        
         if var frame = navigationController?.navigationBar.frame {
             frame.size.height += 7
             let view = UIView(frame: frame )

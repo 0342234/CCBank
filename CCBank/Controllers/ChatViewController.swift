@@ -9,43 +9,79 @@
 import UIKit
 import Firebase
 
-
-
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var containerViewOutlet: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var chatReference: DatabaseReference!
-    let userID: String = { return  Auth.auth().currentUser!.uid }()
+    var userID: String!
     var threadID: String! = ""
     var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chatReference = FirebaseReferences.currentThread(threadID: self.threadID).reference()
-        
-
-chatReference.child("messages").queryOrderedByKey().observe(.value) { (snapshot) in
-    self.messages = []
-            if snapshot.exists() {
-                for child in snapshot.value as! NSDictionary {
-                    let messageObject = child.value as? [String: Any]
-                    if let messageObject = messageObject {
-                        let message = messageObject["payload"] as? String  ?? ""
-                        let timestamp = messageObject["timestamp"] as? Int ?? 0
-                        let userID = messageObject["userID"] as? String ?? " Unknown"
-                        let getData = Message(payload: message, timestamp: timestamp , userID: userID)
-                        self.messages.append(getData)
-                    }
-                    self.tableView.reloadData()
-                }
-                self.tableView.reloadData()
-            }
-            self.tableView.reloadData()
-        }
+        userID = Auth.auth().currentUser!.uid
         let cellNib = UINib(nibName: "MessageTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "MessageCell")
+        chatReference = FirebaseReferences.currentThread(threadID: self.threadID).reference()
+    }
+
+    func loadData() {
+        chatReference.child("messages").observeSingleEvent(of: .value) {(snapshot) in
+            if snapshot.exists() {
+                for child in snapshot.value as! NSDictionary {
+                    if let messageObject = child.value as? [String: Any] {
+                        let message = messageObject["payload"] as! String
+                        let username = messageObject["username"] as! String
+                        let userID = messageObject["userID"] as! String
+                        let timestamp = messageObject["timestamp"] as! Int
+                        let getData = Message(message: message)
+                        getData.timestamp = timestamp
+                        getData.userID = userID
+                        getData.username = username
+                        self.messages.append(getData)
+                    }
+                }
+            }
+            self.messages.sort(by: { (one, two) -> Bool in
+                one.timestamp < two.timestamp
+            })
+        }
+        
+        chatReference.child("messages").observe( .childAdded) {(snapshot) in
+            if snapshot.exists() {
+                if let messageObject = snapshot.value as? [String: Any] {
+                    let message = messageObject["payload"] as! String
+                    let username = messageObject["username"] as! String
+                    let userID = messageObject["userID"] as! String
+                    let timestamp = messageObject["timestamp"] as! Int
+                    let getData = Message(message: message)
+                    getData.timestamp = timestamp
+                    getData.userID = userID
+                    getData.username = username
+                    self.messages.append(getData)
+                    self.tableView.reloadData()
+                    let index = IndexPath(row: self.messages.count - 1, section: 0)
+                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+                }
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        chatReference.removeAllObservers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadData()
+        tableView.reloadData()
+        if self.messages.count > 0 {
+            let index = IndexPath(row: messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+        }
     }
     
     // MARK: - Table view data source
@@ -60,7 +96,10 @@ chatReference.child("messages").queryOrderedByKey().observe(.value) { (snapshot)
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageTableViewCell else { return UITableViewCell() }
-        cell.messageText.text = messages[indexPath.row].payload
+        let messageText = messages[indexPath.row].payload
+        let dateInt = Double(messages[indexPath.row].timestamp)
+        let dateText = NSDate(timeIntervalSince1970: dateInt).toString(dateFormat: "HH:mm")
+        cell.setupCell(message: messageText!, time: String(describing: dateText))
         return cell
     }
     

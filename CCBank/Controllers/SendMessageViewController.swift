@@ -12,23 +12,37 @@ import Firebase
 class SendMessageViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var messageTextField: UITextField!
-    
+    @IBOutlet weak var sendMessageButton: UIButton!
     var chatID : String!
-    var uid: String! = { return Auth.auth().currentUser?.uid }()
+    var uid: String!
     var threadReference: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        uid = Auth.auth().currentUser?.uid
         messageTextField.delegate = self
+        sendMessageButton.isEnabled = false
         threadReference =  FirebaseReferences.currentThread(threadID: chatID).reference()
-        
     }
     
     @IBAction func messageSendAction(_ sender: UIButton) {
-        let timestamp = Date().currentTimestamp()
-        let message = messageTextField.text ?? ""
-        let uid = self.uid
-        let messageObject = Message(payload: message , timestamp: timestamp, userID: uid)
-        threadReference.child("messages").childByAutoId().updateChildValues(messageObject.dictionaryInterpritation)
+        let text = messageTextField.text ?? ""
+        let message = Message(message: text)
+        message.addMeessaged(toChat: chatID)
+        messageTextField.text = ""
     }
-}
+    
+   
+    @IBAction func textField(_ sender: UITextField) {
+        if messageTextField.text!.isEmpty || messageTextField!.text == "" {
+            sendMessageButton.isEnabled = false
+        } else {
+            
+                sendMessageButton.isEnabled = true
+            }
+    }
+    
+  
+    
+    }
+

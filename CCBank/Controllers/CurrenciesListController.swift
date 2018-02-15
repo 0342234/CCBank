@@ -22,10 +22,12 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         updateCurrenciesTableView()
         tableView.delegate = self
         tableView.dataSource = self
         navigationBarConfigurations()
+        
         
         let _ = Timer.scheduledTimer(withTimeInterval: 35, repeats: true) { _ in
             self.updateCurrenciesTableView()
@@ -53,12 +55,12 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
         resultsTableView.tableView.delegate = self
         resultsTableView.tableView.dataSource = self
 }
-
+    
 @objc func refreshTableView() {
     DataManager.shared.fetchCurrencyUrl(withSorting: true) {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
         }
     }
 }
@@ -75,6 +77,7 @@ func navigationBarConfigurations() {
     DataManager.shared.fetchCurrencyUrl(withSorting: true) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        
         }
     }
    
@@ -147,7 +150,6 @@ func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) 
 }
 
 @objc func something() {
-    print("helloy")
 }
 
 func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

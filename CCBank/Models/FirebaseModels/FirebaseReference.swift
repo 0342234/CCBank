@@ -11,7 +11,6 @@ import Firebase
 
 enum FirebaseReferences {
     case root
-    case currentUser(uid: String)
     case users
     case threads
     case currentThread(threadID: String)
@@ -22,7 +21,6 @@ enum FirebaseReferences {
             case .threads : return rootReference.child(path)
             case .currentThread : return rootReference.child(path)
             case .users : return rootReference.child(path)
-            case .currentUser : return rootReference.child(path)
         }
     }
     
@@ -30,13 +28,10 @@ enum FirebaseReferences {
         return Database.database().reference()
     }
     
- 
-    
     private var path: String {
         switch self {
             case .root : return ""
             case .users : return "users"
-            case .currentUser(let uid) : return "users/\(uid)/"
             case .threads : return "threads/"
             case .currentThread(let threadID): return "threads/\(threadID)"
         }

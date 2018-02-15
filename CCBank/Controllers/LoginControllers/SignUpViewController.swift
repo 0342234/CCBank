@@ -32,7 +32,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let repeatedPassworrd = repeatPasswordTextField.text!
         var phrase: String {
             guard nickname.isEmpty == false else { return " Nickname field is empty " }
-            print(nickname)
             guard email.isEmpty == false else { return " Email is empty " }
             guard password.isEmpty == false else { return " assword field is empty " }
             guard repeatedPassworrd.isEmpty == false else { return  " Please repeat password " }

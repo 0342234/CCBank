@@ -9,19 +9,22 @@
 import Foundation
 import Firebase
 
-class ThreadModel: Codable {
-    let title: String!
-    var usersAmount: Int! = 0
-    let timestamp: Int!
-    var users: [String: String]?
-    let uid = Auth.auth().currentUser?.uid ?? "UNKNOWN"
+class ThreadModel {
+    let title: String
+    var usersAmount: Int = 1
+    let timestamp: Int
+    var users: Dictionary< String, String>?
+    let uid: String
     var username: String?
+    var creator: Dictionary< String, String>?
+    var message: Dictionary< String, Dictionary< String, Any> >
     
-    init(title: String, usersAmount: Int, timestamp: Int) {
+    init(title: String) {
         self.title = title
-        self.usersAmount = usersAmount
-        self.timestamp = timestamp
-        
+        timestamp = Date().currentTimestamp()
+        uid = Auth.auth().currentUser?.uid ?? "EMPTY"
+        let message = Message(message: "Test")
+        self.message = ["testKeyForMessage" : message.dictionaryInterpritation]
     }
     
     var toDictionary: [String: Any]
@@ -30,20 +33,23 @@ class ThreadModel: Codable {
             "title" : title,
             "usersAmount" : usersAmount,
             "timestamp" : timestamp,
-            "users" : users ?? [:]
+            "users" : users!,
+            "creator" : uid,
+            "messages" : message
         ]
     }
     
     func addThread() {
-        FirebaseReferences.currentUser(uid: self.uid).reference().observeSingleEvent(of: .value, with: {
-            (dataSnapshot) in
+        FirebaseReferences.users.reference().child(uid).observeSingleEvent(of: .value) { (dataSnapshot) in
             if let data = dataSnapshot.value as? [ String : String ] {
-                print(data)
                 self.username = data["username"]!
-                    self.users = [self.uid : self.username!]
+                self.users = [self.uid : self.username!]
+                self.creator = self.users
+                let ref = FirebaseReferences.threads.reference()
+                ref.childByAutoId().setValue(self.toDictionary)
             }
-        })
-        let ref = FirebaseReferences.threads.reference()
-        ref.childByAutoId().setValue(self.toDictionary)
+        }
     }
+    
+
 }

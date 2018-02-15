@@ -45,7 +45,7 @@ class AlertView: UIView {
     }
     
  @objc func removeFromSuper () {
-    print("|AGRGW")
+
         self.removeFromSuperview()
     }
     

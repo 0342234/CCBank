@@ -34,9 +34,6 @@ class AddUser {
         let ref = FirebaseReferences.users.reference()
         ref.child(uid).setValue(toDictionary)
     }
-
-   
-
 }
 
 

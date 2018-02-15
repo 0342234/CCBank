@@ -10,8 +10,9 @@ import UIKit
 
 class MessageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var viewLayout: UIView!
     @IBOutlet weak var messageText: UILabel!
-    
+    @IBOutlet weak var dateText: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +21,12 @@ class MessageTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
     }
     
+    func setupCell(message: String, time: String) {
+        messageText.text = message
+        dateText.text = time
+        messageText.layer.cornerRadius = 30
+    }
 }

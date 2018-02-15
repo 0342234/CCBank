@@ -12,32 +12,70 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="KGk-i7-Jjw" customClass="MessageTableViewCell" customModule="CCBank" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="87" id="KGk-i7-Jjw" customClass="MessageTableViewCell" customModule="CCBank" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVV-5w-Kjz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNZ-aK-IQv">
+                        <rect key="frame" x="0.0" y="18" width="320" height="72"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVV-5w-Kjz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="51.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iub-F1-WNe">
+                                <rect key="frame" x="286.5" y="53.5" width="28.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="LVV-5w-Kjz" firstAttribute="leading" secondItem="KNZ-aK-IQv" secondAttribute="leading" id="GWP-4f-G2h"/>
+                            <constraint firstAttribute="bottom" secondItem="iub-F1-WNe" secondAttribute="bottom" constant="5" id="H2E-Sg-oBJ"/>
+                            <constraint firstItem="iub-F1-WNe" firstAttribute="top" secondItem="LVV-5w-Kjz" secondAttribute="bottom" constant="2" id="JNx-Z7-8cs"/>
+                            <constraint firstItem="LVV-5w-Kjz" firstAttribute="top" secondItem="KNZ-aK-IQv" secondAttribute="top" id="TX0-ZP-Iiv"/>
+                            <constraint firstAttribute="trailing" secondItem="LVV-5w-Kjz" secondAttribute="trailing" id="aIg-3q-ixQ"/>
+                            <constraint firstAttribute="trailing" secondItem="iub-F1-WNe" secondAttribute="trailing" constant="5" id="ago-xf-DJb"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="CBe-rh-Agb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="hwc-KR-ysm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="LVV-5w-Kjz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7TR-IK-jPo"/>
-                    <constraint firstAttribute="trailing" secondItem="LVV-5w-Kjz" secondAttribute="trailing" id="J8J-iG-RnE"/>
-                    <constraint firstAttribute="bottom" secondItem="LVV-5w-Kjz" secondAttribute="bottom" id="NtQ-O0-oRh"/>
-                    <constraint firstItem="LVV-5w-Kjz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QhW-p0-2QN"/>
+                    <constraint firstAttribute="bottom" secondItem="KNZ-aK-IQv" secondAttribute="bottom" id="0lC-m2-3u7"/>
+                    <constraint firstItem="CBe-rh-Agb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7SX-tX-Z1K"/>
+                    <constraint firstItem="KNZ-aK-IQv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9GW-L5-oDW"/>
+                    <constraint firstAttribute="trailing" secondItem="KNZ-aK-IQv" secondAttribute="trailing" id="Ggo-Ba-lLD"/>
+                    <constraint firstItem="KNZ-aK-IQv" firstAttribute="top" secondItem="CBe-rh-Agb" secondAttribute="top" constant="18" id="K9R-vd-6UY"/>
+                    <constraint firstAttribute="trailing" secondItem="CBe-rh-Agb" secondAttribute="trailing" id="LPi-0L-HjR"/>
+                    <constraint firstItem="CBe-rh-Agb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rSh-gh-rD6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="dateText" destination="iub-F1-WNe" id="PfL-Mc-SfG"/>
                 <outlet property="messageText" destination="LVV-5w-Kjz" id="qXp-vU-lPS"/>
+                <outlet property="viewLayout" destination="KNZ-aK-IQv" id="wMI-tx-PY3"/>
             </connections>
-            <point key="canvasLocation" x="94" y="95"/>
+            <point key="canvasLocation" x="94" y="116.5"/>
         </tableViewCell>
     </objects>
 </document>
