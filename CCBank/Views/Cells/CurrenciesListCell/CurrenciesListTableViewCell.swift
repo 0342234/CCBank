@@ -26,11 +26,13 @@ class CurrenciesListTableViewCell: UITableViewCell {
         accessoryType =  .none
     }
     
-    func cellInitialization(currencyName: String, updateSeconds: String, updateMinutes: String, lastPrice: String, hourChanges: String, dayChanges: String) {
+    func cellInitialization(currencyName: String, lastUpdate: String, lastPrice: String, hourChanges: String, dayChanges: String) {
         self.lastPrice.text = lastPrice + "$"
         self.currencyName.text = currencyName
-        self.lastUpdate.text = "Last update: \(updateMinutes)m. \(updateSeconds)s. ago"
-        
+        let time = Double(lastUpdate) ?? 0.0
+        let dateText = NSDate(timeIntervalSinceReferenceDate: time).toString(dateFormat: "m:ss")
+        self.lastUpdate.text = "Last update: \(dateText) ago"
+
         if hourChanges == "Undefined" {
             self.hourChanges.textColor = UIColor.brown
             self.hourChanges.text = "Undefined"

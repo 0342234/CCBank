@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class Message {
+class MessageModel {
     var payload: String!
     var timestamp: Int!
     var userID: String!
@@ -30,13 +30,15 @@ class Message {
         ]
     }
     
-    func addMeessaged(toChat withID: String) {
+    func addMeessage(chatid: String) {
         FirebaseReferences.users.reference().child(userID).observeSingleEvent(of: .value) { (dataSnapshot) in
-            if let data = dataSnapshot.value as? [ String : String ] {
-                self.username = data["username"]
-                FirebaseReferences.threads.reference().child(withID).child("messages").childByAutoId().setValue(self.dictionaryInterpritation)
+            if let data = dataSnapshot.value as? [ String : Any ] {
+                self.username = data["username"] as? String
+                FirebaseReferences.threads.reference().child(chatid).child("messages").childByAutoId().setValue(self.dictionaryInterpritation)
             }
         }
     }
+    
+    
 }
 

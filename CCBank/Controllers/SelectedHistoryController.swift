@@ -15,14 +15,14 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
     var resultsTableView = UITableViewController()
     
     var groupedCurrencies : GroupedCurrencies?
-    var rowData: [HundredCCurrencies]!
-    var currentData: [CurrenciesModel] = {
+    var rowData: [CurrencyModel]!
+    var currentData: [CurrenciesAPIModel] = {
         return  DataManager.shared.data
     }()
     
-    private var filteredDataSource: [HundredCCurrencies] = []
+    private var filteredDataSource: [CurrencyModel] = []
     
-    var hundredObjects : [HundredCCurrencies]?
+    var hundredObjects : [CurrencyModel]?
     
     @IBOutlet weak var tableView: UITableView!
     var cellExpanded = false
@@ -30,8 +30,8 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var objects = groupedCurrencies?.hundredCurrencies?.allObjects as! [HundredCCurrencies]
-        objects.sort { Int($0.rank)! < Int($1.rank)! }
+        var objects = groupedCurrencies?.hundredCurrencies?.allObjects as! [CurrencyModel]
+        objects.sort { Int($0.rank) < Int($1.rank) }
         hundredObjects = objects
         tableView.delegate = self
         tableView.dataSource = self
@@ -57,7 +57,7 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
     }
     func updateSearchResults(for searchController: UISearchController) {
         filteredDataSource = hundredObjects!.filter( { model in
-            return model.name.contains(searchController.searchBar.text!)})
+            return (model.name?.contains(searchController.searchBar.text!))!})
         resultsTableView.tableView.reloadData()
     }
     
@@ -84,9 +84,8 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
             rowData = hundredObjects!
         }
         let currencyName = rowData[indexPath.row].name
-        let savedCurrencyPrice = rowData[indexPath.row].usdValue
-        let currencyCapitalization = rowData[indexPath.row].capitalization  ?? "Undefined"
-        
+        let savedCurrencyPrice = String(rowData[indexPath.row].price_usd)
+        let currencyCapitalization = String(rowData[indexPath.row].market_cap_usd)
         var currentPrice = "undefined"
         var currentCapitalization = "undefined"
         var priceChanges = "undefined"
@@ -94,7 +93,7 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
         
         for i in currentData {
             if i.name == currencyName {
-                currentCapitalization = i.available_supply!
+                currentCapitalization = i.market_cap_usd
                 let oldCapValue = Double(currencyCapitalization)
                 let currentCapValue = Double(currentCapitalization)
                 let capPercentChanges = ( (currentCapValue! - oldCapValue! ) / oldCapValue! ) * 100
@@ -108,7 +107,7 @@ class SelectedHistoryController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        cell?.setupCell(name: currencyName, savedPrice: savedCurrencyPrice, currentPrice: currentPrice, priceChanges: priceChanges, savedCapitalization: currencyCapitalization, currentCapitalization: currentCapitalization, capitalizationChanges: capitalizationChanges)
+        cell?.setupCell(name: currencyName!, savedPrice: savedCurrencyPrice, currentPrice: currentPrice, priceChanges: priceChanges, savedCapitalization: currencyCapitalization, currentCapitalization: currentCapitalization, capitalizationChanges: capitalizationChanges)
         cell?.isExpanded = self.expandedRows.contains(indexPath.row)
         
         return cell!

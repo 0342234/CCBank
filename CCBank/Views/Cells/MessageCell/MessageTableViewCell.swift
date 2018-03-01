@@ -10,6 +10,7 @@ import UIKit
 
 class MessageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var messageSender: UILabel!
     @IBOutlet weak var viewLayout: UIView!
     @IBOutlet weak var messageText: UILabel!
     @IBOutlet weak var dateText: UILabel!
@@ -24,9 +25,11 @@ class MessageTableViewCell: UITableViewCell {
         
     }
     
-    func setupCell(message: String, time: String) {
+    func setupCell(message: String, time: String, sender: String) {
+        viewLayout.layer.cornerRadius = 60
         messageText.text = message
         dateText.text = time
         messageText.layer.cornerRadius = 30
+        messageSender.text = sender
     }
 }

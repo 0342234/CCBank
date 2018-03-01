@@ -46,7 +46,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         Auth.auth().createUser(withEmail: email, password: password, completion: { (firebaseUser, error) in
             if error == nil {
-                let newUser = AddUser(username: nickname, uid: (firebaseUser?.uid)!, email: email)
+                let newUser = UserModel(username: nickname, uid: (firebaseUser?.uid)!, email: email)
                 newUser.save()
                 Auth.auth().signIn(withEmail: email, password: password, completion: { (firebaseUser, error) in
                     if let error = error {

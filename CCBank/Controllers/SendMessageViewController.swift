@@ -21,28 +21,34 @@ class SendMessageViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         uid = Auth.auth().currentUser?.uid
         messageTextField.delegate = self
+        messageTextField.clearButtonMode = .always
+        messageTextField.clearButtonMode = .whileEditing
         sendMessageButton.isEnabled = false
         threadReference =  FirebaseReferences.currentThread(threadID: chatID).reference()
     }
     
     @IBAction func messageSendAction(_ sender: UIButton) {
-        let text = messageTextField.text ?? ""
-        let message = Message(message: text)
-        message.addMeessaged(toChat: chatID)
-        messageTextField.text = ""
+        let text = messageTextField.text
+        guard let textUnwrapped = text else {
+            print("textfield is empty")
+         return
+        }
+        let message = MessageModel(message: textUnwrapped)
+        message.addMeessage(chatid: chatID)
     }
     
-   
     @IBAction func textField(_ sender: UITextField) {
         if messageTextField.text!.isEmpty || messageTextField!.text == "" {
             sendMessageButton.isEnabled = false
         } else {
-            
-                sendMessageButton.isEnabled = true
-            }
+            sendMessageButton.isEnabled = true
+        }
     }
     
-  
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+        
     }
+}
 

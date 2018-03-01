@@ -17,18 +17,40 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var chatReference: DatabaseReference!
     var userID: String!
     var threadID: String! = ""
-    var messages: [Message] = []
+    var messages: [MessageModel] = []
+    var containerViewController: SendMessageViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userID = Auth.auth().currentUser!.uid
         let cellNib = UINib(nibName: "MessageTableViewCell", bundle: nil)
+        let getMessageNib = UINib(nibName: "FromStrangerTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "MessageCell")
+        tableView.register(getMessageNib, forCellReuseIdentifier: "FromStrangerTableViewCell")
         chatReference = FirebaseReferences.currentThread(threadID: self.threadID).reference()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(leaveChat) )
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
+    @objc func leaveChat() {
+        ThreadFunctions.leaveChat(chatid:threadID )
+    }
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardFrame = view.convert(keyboardSize, to: nil)
+            view.frame.origin.y -= (keyboardFrame.height - 49)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 15
+    }
+    
     func loadData() {
-        chatReference.child("messages").observeSingleEvent(of: .value) {(snapshot) in
+        chatReference.child("messages").observeSingleEvent(of: .value) { [weak self] (snapshot) in
             if snapshot.exists() {
                 for child in snapshot.value as! NSDictionary {
                     if let messageObject = child.value as? [String: Any] {
@@ -36,34 +58,37 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         let username = messageObject["username"] as! String
                         let userID = messageObject["userID"] as! String
                         let timestamp = messageObject["timestamp"] as! Int
-                        let getData = Message(message: message)
+                        let getData = MessageModel(message: message)
                         getData.timestamp = timestamp
                         getData.userID = userID
                         getData.username = username
-                        self.messages.append(getData)
+                        self?.messages.append(getData)
                     }
                 }
             }
-            self.messages.sort(by: { (one, two) -> Bool in
+            self?.messages.sort(by: { (one, two) -> Bool in
                 one.timestamp < two.timestamp
             })
         }
         
-        chatReference.child("messages").observe( .childAdded) {(snapshot) in
+        chatReference.child("messages").observe( .childAdded) { [weak self] (snapshot) in
             if snapshot.exists() {
                 if let messageObject = snapshot.value as? [String: Any] {
                     let message = messageObject["payload"] as! String
                     let username = messageObject["username"] as! String
                     let userID = messageObject["userID"] as! String
                     let timestamp = messageObject["timestamp"] as! Int
-                    let getData = Message(message: message)
+                    let getData = MessageModel(message: message)
                     getData.timestamp = timestamp
                     getData.userID = userID
                     getData.username = username
-                    self.messages.append(getData)
-                    self.tableView.reloadData()
-                    let index = IndexPath(row: self.messages.count - 1, section: 0)
-                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+                    
+                    if self != nil {
+                        self!.messages.append(getData)
+                        self!.tableView.reloadData()
+                        let index = IndexPath(row: self!.messages.count - 1, section: 0)
+                        self!.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+                    }
                 }
             }
         }
@@ -95,16 +120,29 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageTableViewCell else { return UITableViewCell() }
-        let messageText = messages[indexPath.row].payload
-        let dateInt = Double(messages[indexPath.row].timestamp)
-        let dateText = NSDate(timeIntervalSince1970: dateInt).toString(dateFormat: "HH:mm")
-        cell.setupCell(message: messageText!, time: String(describing: dateText))
-        return cell
+        var cell = UITableViewCell() as? MessageTableViewCell
+        if messages[indexPath.row].userID != userID  {
+            cell = tableView.dequeueReusableCell(withIdentifier: "FromStrangerTableViewCell", for: indexPath) as? MessageTableViewCell
+            let messageText = messages[indexPath.row].payload
+            let dateInt = Double(messages[indexPath.row].timestamp)
+            let dateText = NSDate(timeIntervalSince1970: dateInt).toString(dateFormat: "HH:mm")
+            let sender = messages[indexPath.row].username
+            cell?.setupCell(message: messageText!, time: String(describing: dateText), sender: sender!)
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as? MessageTableViewCell
+            let messageText = messages[indexPath.row].payload
+            let dateInt = Double(messages[indexPath.row].timestamp)
+            let dateText = NSDate(timeIntervalSince1970: dateInt).toString(dateFormat: "HH:mm")
+            let sender = messages[indexPath.row].username
+            cell?.setupCell(message: messageText!, time: String(describing: dateText), sender: sender!)
+        }
+    return cell!
+}
+
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "FromChatToSendContainer" {
+        containerViewController = segue.destination as? SendMessageViewController
+        containerViewController?.chatID = threadID
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let messageContainerController = segue.destination as? SendMessageViewController else { return }
-        messageContainerController.chatID = threadID
-    }
+}
 }

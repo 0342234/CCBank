@@ -9,12 +9,11 @@
 import Foundation
 import Firebase
 
-class AddUser {
+class UserModel {
     let username: String
     let uid: String
     let email: String
-    
-    
+
     init(username: String, uid: String, email: String) {
         self.username = username
         self.uid = uid

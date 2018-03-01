@@ -13,6 +13,13 @@ import Firebase
 class ChannelsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Scene Dock Control
+    
+    var blurView = UIView {
+        $0.alpha = 0.0
+        $0.backgroundColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        $0.frame = CGRect(x: 0 , y: 0 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100)
+    }
+    
     @IBOutlet var sceneDockView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBAction func noButton(_ sender: UIButton) {
@@ -55,19 +62,13 @@ class ChannelsViewController: UIViewController, UITableViewDelegate, UITableView
     private var threadsReference: DatabaseReference!
     private var chatUID = ""
     
-    var blurView = UIView {
-        $0.alpha = 0.0
-        $0.backgroundColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
-        $0.frame = CGRect(x: 0 , y: 0 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         userID = Auth.auth().currentUser?.uid
         threadsReference = FirebaseReferences.threads.reference()
         
         //úi
-        navigationItem.title = "Channels"
+       
         navigationItem.leftBarButtonItem  = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(logOut))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(invokeSubView))
         let cellXib = UINib(nibName: "ChannelsTableViewCell", bundle: nil)
@@ -77,28 +78,29 @@ class ChannelsViewController: UIViewController, UITableViewDelegate, UITableView
     func setupObservers() {
         threadsReference.observeSingleEvent(of: .value, with: { [unowned self] (snapshot) in
             self.threads = []
+            self.chatUIDS = []
             if snapshot.exists() {
-                
                 let values = snapshot.value as! NSDictionary
-                    for child in values {
-                        print(child)
+                for child in values {
                     self.chatUIDS.append(child.key as! String)
                     let childValues = child.value as! [String : Any]
                     let title = childValues["title"] as! String
+                    let users = childValues["users"] as! [String : String]
                     let dataObject = ThreadModel(title: title)
+                    dataObject.users = users
                     self.threads.append(dataObject)
-                    
                 }
             }
-            })
+        })
         self.tableView.reloadData()
-  
         threadsReference.observe(.childAdded) { [unowned self] (snapshot) in
             if snapshot.exists() {
-                self.chatUIDS.append(snapshot.key)
                 if let child = snapshot.value as? NSDictionary {
+                    self.chatUIDS.append(snapshot.key)
                     let title = child["title"] as! String
+                    let users = child["users"] as! [String : String]
                     let thread = ThreadModel(title: title)
+                    thread.users = users
                     self.threads.append(thread)
                     self.tableView.reloadData()
                 }
@@ -108,7 +110,6 @@ class ChannelsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         setupObservers()
         self.tableView.reloadData()
     }
@@ -116,6 +117,7 @@ class ChannelsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         threads = []
+        chatUIDS = []
         threadsReference.removeAllObservers()
     }
     
@@ -158,34 +160,14 @@ class ChannelsViewController: UIViewController, UITableViewDelegate, UITableView
         let reuseIdentifier = "ChannelCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? ChannelsTableViewCell
         let threadTitle: String! = threads[indexPath.row].title
-        let threadUsers: Int! = threads[indexPath.row].usersAmount
+        let threadUsers: Int! = threads[indexPath.row].users?.count
         cell?.setupCell(threadTitle: threadTitle, numberOfUsers: threadUsers)
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chatUID = chatUIDS[indexPath.row]
-        FirebaseReferences.currentThread(threadID: chatUID).reference().runTransactionBlock { [unowned self] (mutableData) -> TransactionResult in
-            if var data = mutableData.value as? [String: AnyObject] {
-                var usersAmount: Int
-                var users: Dictionary<String, Any>
-                usersAmount = data["usersAmount"] as? Int ?? 0
-                users = data["users"] as? [ String: String] ?? [:]
-                usersAmount += 1
-                var username: String = ""
-                let reference  = FirebaseReferences.users.reference().child(self.userID)
-                reference.observeSingleEvent(of: .value, with: { (dataSnapshot) in
-                    if let data = dataSnapshot.value as? [ String : String] {
-                        username = data["username"]!
-                    }
-                })
-                users[self.userID] = username
-                data["users"] = users as AnyObject?
-                data["usersAmount"] = usersAmount as AnyObject?
-                mutableData.value = data
-            }
-            return TransactionResult.success(withValue: mutableData)
-        }
+        ThreadFunctions.enterChat(chatid: chatUID, userid: userID)
         performSegue(withIdentifier: "FromChannelsToChat", sender: chatUID)
     }
     

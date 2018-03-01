@@ -25,10 +25,10 @@ extension GroupedCurrencies {
 extension GroupedCurrencies {
 
     @objc(addHundredCurrenciesObject:)
-    @NSManaged public func addToHundredCurrencies(_ value: HundredCCurrencies)
+    @NSManaged public func addToHundredCurrencies(_ value: CurrencyModel)
 
     @objc(removeHundredCurrenciesObject:)
-    @NSManaged public func removeFromHundredCurrencies(_ value: HundredCCurrencies)
+    @NSManaged public func removeFromHundredCurrencies(_ value: CurrencyModel)
 
     @objc(addHundredCurrencies:)
     @NSManaged public func addToHundredCurrencies(_ values: NSSet)

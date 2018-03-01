@@ -17,7 +17,7 @@ extension NSDate {
 }
 
 extension Date {
-    func currentTimestamp() -> Int {
-        return Int(self.timeIntervalSince1970 )
+    func currentTimestamp( ) -> Int {
+        return Int( self.timeIntervalSince1970 )
     }
 }

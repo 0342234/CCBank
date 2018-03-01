@@ -41,5 +41,4 @@ extension AuthErrorCode {
             return "Unknown error occurred"
         }
     }
-    
 }
