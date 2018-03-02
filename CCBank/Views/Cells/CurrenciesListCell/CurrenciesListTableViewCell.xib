@@ -19,22 +19,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="77.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Update" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-c7-azf">
-                        <rect key="frame" x="7" y="42" width="83.5" height="30.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vlX-UZ-5SD">
-                        <rect key="frame" x="156" y="5" width="30" height="32"/>
+                        <rect key="frame" x="149" y="5" width="33" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2o-oF-HDI">
-                        <rect key="frame" x="7" y="6" width="141" height="31"/>
+                        <rect key="frame" x="7" y="6" width="138" height="21.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="141" id="Xzz-4o-lG8"/>
+                            <constraint firstAttribute="width" constant="138" id="Xzz-4o-lG8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <nil key="textColor"/>
@@ -55,25 +49,37 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXb-CJ-Onb">
+                        <rect key="frame" x="7" y="52.5" width="82.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Last Update" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-c7-azf">
+                        <rect key="frame" x="93.5" y="53" width="88.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="ssc-m3-BFQ" secondAttribute="trailing" id="21X-aA-6Vb"/>
+                    <constraint firstAttribute="bottom" secondItem="bXb-CJ-Onb" secondAttribute="bottom" constant="4.5" id="2T6-mg-dAk"/>
                     <constraint firstAttribute="trailing" secondItem="wBb-EY-TSx" secondAttribute="trailing" id="2hC-LA-hfR"/>
-                    <constraint firstItem="Jvs-c7-azf" firstAttribute="top" secondItem="D2o-oF-HDI" secondAttribute="bottom" constant="5" id="BrJ-Px-f6e"/>
-                    <constraint firstAttribute="bottom" secondItem="Jvs-c7-azf" secondAttribute="bottom" constant="5" id="C17-dK-o9v"/>
+                    <constraint firstItem="bXb-CJ-Onb" firstAttribute="leading" secondItem="D2o-oF-HDI" secondAttribute="leading" id="FIb-ln-aSO"/>
+                    <constraint firstAttribute="bottom" secondItem="Jvs-c7-azf" secondAttribute="bottom" constant="4.5" id="HNO-Ch-7Pa"/>
+                    <constraint firstItem="wBb-EY-TSx" firstAttribute="leading" secondItem="Jvs-c7-azf" secondAttribute="trailing" constant="12" id="IAa-UN-aRD"/>
                     <constraint firstItem="wBb-EY-TSx" firstAttribute="top" secondItem="ssc-m3-BFQ" secondAttribute="bottom" constant="5" id="K5p-gS-byd"/>
-                    <constraint firstItem="Jvs-c7-azf" firstAttribute="top" secondItem="vlX-UZ-5SD" secondAttribute="bottom" constant="5" id="Ksc-qe-4sS"/>
                     <constraint firstItem="D2o-oF-HDI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="O2w-Gc-aOK"/>
-                    <constraint firstItem="ssc-m3-BFQ" firstAttribute="leading" secondItem="vlX-UZ-5SD" secondAttribute="trailing" constant="8" id="Qyl-4k-gNM"/>
+                    <constraint firstItem="ssc-m3-BFQ" firstAttribute="leading" secondItem="vlX-UZ-5SD" secondAttribute="trailing" constant="12" id="Qyl-4k-gNM"/>
                     <constraint firstItem="ssc-m3-BFQ" firstAttribute="height" secondItem="wBb-EY-TSx" secondAttribute="height" id="cKN-mU-sck"/>
                     <constraint firstItem="D2o-oF-HDI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="dVF-IJ-k3d"/>
                     <constraint firstItem="ssc-m3-BFQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="fx1-rc-NI3"/>
-                    <constraint firstItem="vlX-UZ-5SD" firstAttribute="leading" secondItem="D2o-oF-HDI" secondAttribute="trailing" constant="8" id="iNd-AC-MOA"/>
+                    <constraint firstItem="vlX-UZ-5SD" firstAttribute="leading" secondItem="D2o-oF-HDI" secondAttribute="trailing" constant="4" id="iNd-AC-MOA"/>
                     <constraint firstAttribute="bottom" secondItem="wBb-EY-TSx" secondAttribute="bottom" constant="4.5" id="jxC-GM-SQa"/>
                     <constraint firstItem="ssc-m3-BFQ" firstAttribute="width" secondItem="wBb-EY-TSx" secondAttribute="width" id="lOH-tq-Uuv"/>
                     <constraint firstItem="vlX-UZ-5SD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="lpz-tw-MbE"/>
-                    <constraint firstItem="Jvs-c7-azf" firstAttribute="height" secondItem="D2o-oF-HDI" secondAttribute="height" id="ndR-Xa-l7s"/>
-                    <constraint firstItem="Jvs-c7-azf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="tXG-PE-3PH"/>
+                    <constraint firstItem="Jvs-c7-azf" firstAttribute="leading" secondItem="bXb-CJ-Onb" secondAttribute="trailing" constant="4" id="nFv-xh-4wv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -83,6 +89,7 @@
                 <outlet property="hourChanges" destination="wBb-EY-TSx" id="C2L-OR-YM3"/>
                 <outlet property="lastPrice" destination="vlX-UZ-5SD" id="ZWx-tW-KWt"/>
                 <outlet property="lastUpdate" destination="Jvs-c7-azf" id="L4p-xW-b70"/>
+                <outlet property="symbol" destination="bXb-CJ-Onb" id="Ajg-vA-2jH"/>
             </connections>
             <point key="canvasLocation" x="141" y="96"/>
         </tableViewCell>

@@ -326,7 +326,7 @@
                                 </state>
                                 <connections>
                                     <action selector="sigInButton:" destination="bZe-Gv-Mex" eventType="touchUpInside" id="F0q-lo-JVx"/>
-                                    <segue destination="Eur-pc-rEK" kind="show" id="pLb-DX-haY"/>
+                                    <segue destination="Eur-pc-rEK" kind="presentation" id="pLb-DX-haY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cd4-5R-4eW">
@@ -557,7 +557,7 @@
             <objects>
                 <viewController id="hRf-z7-GJb" customClass="ChannelsViewController" customModule="CCBank" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m2A-cG-mn9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6hZ-uG-waB">
@@ -578,6 +578,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="L7N-d6-Grc"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Channels" id="OWr-wL-Iwg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -674,13 +675,13 @@
         <!--Chat View Controller-->
         <scene sceneID="LNr-X6-19e">
             <objects>
-                <viewController id="d4K-rm-Tzp" customClass="ChatViewController" customModule="CCBank" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="d4K-rm-Tzp" customClass="ChatViewController" customModule="CCBank" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DdO-bH-ghY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJ5-UC-CL9">
-                                <rect key="frame" x="0.0" y="516" width="375" height="38"/>
+                                <rect key="frame" x="0.0" y="565" width="375" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="koj-ga-zoP"/>
                                 </constraints>
@@ -688,8 +689,8 @@
                                     <segue destination="olb-C8-XnL" kind="embed" identifier="FromChatToSendContainer" id="XJl-Xh-Fk3"/>
                                 </connections>
                             </containerView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vhy-RK-rmb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="516"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vhy-RK-rmb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="565"/>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="d4K-rm-Tzp" id="btK-5h-qcr"/>
@@ -752,10 +753,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExK-7m-Gkm">
-                                <rect key="frame" x="341" y="4" width="30" height="30"/>
+                                <rect key="frame" x="340" y="4" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.16862745100000001" green="0.16862745100000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="+"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.72156862749999995" green="0.98039215690000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="8"/>
@@ -769,7 +772,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" tag="701" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R6N-uY-jXw">
-                                <rect key="frame" x="2" y="4" width="333" height="30"/>
+                                <rect key="frame" x="5" y="4" width="330" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
@@ -778,15 +781,15 @@
                                 </connections>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GFW-eQ-fpW" firstAttribute="bottom" secondItem="R6N-uY-jXw" secondAttribute="bottom" constant="4" id="2B7-uh-XWd"/>
                             <constraint firstItem="R6N-uY-jXw" firstAttribute="top" secondItem="GFW-eQ-fpW" secondAttribute="top" constant="4" id="CHF-8I-l3V"/>
-                            <constraint firstItem="GFW-eQ-fpW" firstAttribute="trailing" secondItem="ExK-7m-Gkm" secondAttribute="trailing" constant="4" id="DKH-Aj-9tJ"/>
-                            <constraint firstItem="ExK-7m-Gkm" firstAttribute="leading" secondItem="R6N-uY-jXw" secondAttribute="trailing" constant="6" id="dvb-uU-VAp"/>
+                            <constraint firstItem="GFW-eQ-fpW" firstAttribute="trailing" secondItem="ExK-7m-Gkm" secondAttribute="trailing" constant="5" id="DKH-Aj-9tJ"/>
+                            <constraint firstItem="ExK-7m-Gkm" firstAttribute="leading" secondItem="R6N-uY-jXw" secondAttribute="trailing" constant="5" id="dvb-uU-VAp"/>
                             <constraint firstItem="GFW-eQ-fpW" firstAttribute="bottom" secondItem="ExK-7m-Gkm" secondAttribute="bottom" constant="4" id="gSf-kv-Ukz"/>
                             <constraint firstItem="ExK-7m-Gkm" firstAttribute="top" secondItem="GFW-eQ-fpW" secondAttribute="top" constant="4" id="mhZ-a7-kEZ"/>
-                            <constraint firstItem="R6N-uY-jXw" firstAttribute="leading" secondItem="GFW-eQ-fpW" secondAttribute="leading" constant="2" id="zMJ-y9-0Qm"/>
+                            <constraint firstItem="R6N-uY-jXw" firstAttribute="leading" secondItem="GFW-eQ-fpW" secondAttribute="leading" constant="5" id="zMJ-y9-0Qm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GFW-eQ-fpW"/>
                     </view>

@@ -17,16 +17,36 @@ class ChannelsViewController: UIViewController, UITableViewDelegate, UITableView
     var blurView = UIView {
         $0.alpha = 0.0
         $0.backgroundColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
-        $0.frame = CGRect(x: 0 , y: 0 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 100)
+        $0.frame = CGRect(x: 0 , y: 0 , width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        print($0.frame)
+        $0.isOpaque = false
     }
     
     @IBOutlet var sceneDockView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
+    
+    @objc func invokeSubView() {
+        sceneDockView.center = self.blurView.center
+        self.view.addSubview(blurView)
+        sceneDockView.frame.origin.y = 1400
+        UIView.animate(withDuration: 2, animations: {
+            self.blurView.alpha = 0.9
+            self.sceneDockView.alpha = 1
+            self.blurView.addSubview(self.sceneDockView)
+            self.sceneDockView.frame.origin.y = (self.blurView.frame.origin.y / 2)
+            
+        }) { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                
+            })
+        }
+    }
+    
     @IBAction func noButton(_ sender: UIButton) {
         UIView.animate(withDuration: 0.5, delay: 0.1, options: [], animations: {
             self.blurView.transform = CGAffineTransform(translationX: 0, y: self.view.frame.height - 600)
             self.blurView.alpha = 0
-        }){ _ in
+        }){ [unowned self] _ in
             self.blurView.removeFromSuperview()
             self.sceneDockView.removeFromSuperview()
             self.blurView.transform = .identity
@@ -121,20 +141,7 @@ class ChannelsViewController: UIViewController, UITableViewDelegate, UITableView
         threadsReference.removeAllObservers()
     }
     
-    @objc func invokeSubView() {
-        blurView.center = view.center
-        sceneDockView.center = blurView.center
-        self.view.addSubview(blurView)
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            self.blurView.alpha = 0.9
-            self.sceneDockView.alpha = 1
-        }) { (sucess) in
-            UIView.animate(withDuration: 0.5, animations: {
-                self.blurView.addSubview(self.sceneDockView)
-            })
-        }
-    }
+ 
     
     @objc func logOut() {
         try! Auth.auth().signOut()

@@ -32,6 +32,22 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        chatReference.removeAllObservers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadData()
+        tableView.reloadData()
+        if self.messages.count > 0 {
+            let index = IndexPath(row: messages.count - 1, section: 0)
+            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+        }
+    }
+    
     @objc func leaveChat() {
         ThreadFunctions.leaveChat(chatid:threadID )
     }
@@ -41,12 +57,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let keyboardFrame = view.convert(keyboardSize, to: nil)
-            view.frame.origin.y -= (keyboardFrame.height - 49)
+            view.frame.origin.y -= keyboardFrame.height
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 15
+        let navPlusStatusBarHeight = 64.0
+        view.frame.origin.y = CGFloat(navPlusStatusBarHeight)
     }
     
     func loadData() {
@@ -94,20 +111,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        chatReference.removeAllObservers()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        loadData()
-        tableView.reloadData()
-        if self.messages.count > 0 {
-            let index = IndexPath(row: messages.count - 1, section: 0)
-            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-        }
-    }
+ 
     
     // MARK: - Table view data source
     
@@ -136,13 +140,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let sender = messages[indexPath.row].username
             cell?.setupCell(message: messageText!, time: String(describing: dateText), sender: sender!)
         }
-    return cell!
-}
-
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "FromChatToSendContainer" {
-        containerViewController = segue.destination as? SendMessageViewController
-        containerViewController?.chatID = threadID
+        return cell!
     }
-}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FromChatToSendContainer" {
+            containerViewController = segue.destination as? SendMessageViewController
+            containerViewController?.chatID = threadID
+        }
+    }
 }

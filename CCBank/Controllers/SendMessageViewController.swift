@@ -31,10 +31,11 @@ class SendMessageViewController: UIViewController, UITextFieldDelegate {
         let text = messageTextField.text
         guard let textUnwrapped = text else {
             print("textfield is empty")
-         return
+            return
         }
         let message = MessageModel(message: textUnwrapped)
         message.addMeessage(chatid: chatID)
+        
     }
     
     @IBAction func textField(_ sender: UITextField) {
@@ -48,7 +49,6 @@ class SendMessageViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-        
     }
 }
 

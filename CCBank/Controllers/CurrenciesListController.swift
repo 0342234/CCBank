@@ -16,18 +16,19 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
     var refreshControl  = UIRefreshControl()
     var searchController = UISearchController()
     var resultsTableView = UITableViewController()
-    
-    private var dataSource: [CurrenciesAPIModel] { return DataManager.shared.data }
+
     private var filteredDataSource: [CurrenciesAPIModel] = []
+    private var favoriteCurrencies: [CurrenciesAPIModel] = []
+    private var notFavoriteCurrencies: [CurrenciesAPIModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateCurrenciesTableView()
+        refreshTableView()
         tableView.delegate = self
         tableView.dataSource = self
         navigationBarConfigurations()
         let _ = Timer.scheduledTimer(withTimeInterval: 35, repeats: true) { _ in
-            self.updateCurrenciesTableView()
+            self.refreshTableView()
         }
         
         let customCellXib = UINib(nibName: "CurrenciesListTableViewCell", bundle: nil)
@@ -53,38 +54,35 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
         resultsTableView.tableView.dataSource = self
     }
     
-    @objc func refreshTableView() {
-        DataManager.shared.fetchData(withSorting: true) {
-            DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
     func navigationBarConfigurations() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(showSaveAlert))
         navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 184/255, green: 250/255, blue: 236/255, alpha: 1)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateCurrenciesTableView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTableView))
         navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 184/255, green: 250/255, blue: 236/255, alpha: 1)
     }
     
-    @objc func updateCurrenciesTableView() {
-        DataManager.shared.fetchData(withSorting: true) {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+    @objc func refreshTableView() {
         if Reachability.isConnectedToNetwork() {
-        
+            DataManager.shared.fetchData { (currencies) in
+                DataSort.sortDataSource(data: currencies, completion: { [unowned self] (favorite, notfavorite) in
+                    self.favoriteCurrencies = favorite
+                    self.notFavoriteCurrencies = notfavorite
+                    DispatchQueue.main.async {
+                        self.refreshControl.endRefreshing()
+                        self.tableView.reloadData()
+                        }
+                })
+            }
         } else {
             print("Internet Connection not Available!")
             let alertController = UIAlertController(title: "No Internet", message: "Your phone must be connected to innternet to use application,", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(action)
             present(alertController, animated: true, completion: nil)
+            return
         }
     }
+    
     
     @objc func showSaveAlert() {
         performSegue(withIdentifier: "FromListToSave", sender: nil)
@@ -92,7 +90,7 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
         let actionYes = UIAlertAction(title: "Yes", style: .default) { _ in
             let savingDate = NSDate()
             let hundredCurrencies = GroupedCurrencies(context: PersistenceService.context)
-            for currentCurrency in self.dataSource {
+            for currentCurrency in DataManager.shared.data {
                 let currency = CurrencyModel(context: PersistenceService.context)
                 let id = currentCurrency.id
                 let name = currentCurrency.name
@@ -140,9 +138,9 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
             return filteredDataSource.count
         } else {
             if section == 0 {
-                return DataManager.shared.favoriteData.count
+                return favoriteCurrencies.count
             } else {
-                return DataManager.shared.notFavoriteCurrentData.count
+                return notFavoriteCurrencies.count
             }
         }
     }
@@ -188,15 +186,15 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
         if tableView == resultsTableView.tableView {
             rowDataSource = filteredDataSource[indexPath.row]
         } else {
-            rowDataSource = indexPath.section == 0 ? DataManager.shared.favoriteData[indexPath.row] :  DataManager.shared.notFavoriteCurrentData[indexPath.row]
+            rowDataSource = indexPath.section == 0 ? favoriteCurrencies[indexPath.row] :  notFavoriteCurrencies[indexPath.row]
         }
         let name = rowDataSource.name
         let usdPrice = rowDataSource.price_usd
         let lastUpdate = rowDataSource.last_updated
         let hourChanges = rowDataSource.percent_change_1h ?? "Undefined"
         let dayChanges = rowDataSource.percent_change_24h ?? "Undefined"
-        cell?.cellInitialization(currencyName: name, lastUpdate: lastUpdate, lastPrice: usdPrice, hourChanges: hourChanges, dayChanges: dayChanges)
-
+        let symbol = rowDataSource.symbol
+        cell?.cellInitialization(currencyName: name, lastUpdate: lastUpdate, lastPrice: usdPrice, hourChanges: hourChanges, dayChanges: dayChanges, symbol: symbol)
         return cell!
     }
     
@@ -219,13 +217,7 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
             let alertActionOk = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(alertActionOk)
             present(alert, animated: true, completion: {
-                DispatchQueue.main.async {
-                    DataManager.shared.fetchData(withSorting: true, completion: {
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    })
-                }
+                self.refreshTableView()
             })
         } else {
             if indexPath.section == 0 {
@@ -244,10 +236,10 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
                     print("Could not save. \(error), \(error.userInfo)")
                 }
                 
-                let data = DataManager.shared.favoriteData[indexPath.row]
+                let data = favoriteCurrencies[indexPath.row]
                 tableView.beginUpdates()
-                DataManager.shared.notFavoriteCurrentData.append(data)
-                DataManager.shared.favoriteData.remove(at: indexPath.row)
+                notFavoriteCurrencies.append(data)
+                favoriteCurrencies.remove(at: indexPath.row)
                 let newIndexPath = NSIndexPath(row: 0, section: 1) as IndexPath
                 tableView.moveRow(at: indexPath, to: newIndexPath)
                 tableView.endUpdates()
@@ -264,12 +256,11 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
                     print("Could not save. \(error), \(error.userInfo)")
                 }
                 
-                
-                let data = DataManager.shared.notFavoriteCurrentData[indexPath.row]
+                let data = notFavoriteCurrencies[indexPath.row]
                 tableView.beginUpdates()
-                let ccurenciesDependency = DataManager.shared.favoriteData.count
-                DataManager.shared.favoriteData.append(data)
-                DataManager.shared.notFavoriteCurrentData.remove(at: indexPath.row)
+                let ccurenciesDependency = favoriteCurrencies.count
+                favoriteCurrencies.append(data)
+                notFavoriteCurrencies.remove(at: indexPath.row)
                 
                 let newIndexPath = NSIndexPath(row: ccurenciesDependency , section: 0) as IndexPath
                 tableView.moveRow(at: indexPath, to: newIndexPath)
@@ -281,7 +272,7 @@ class CurrenciesListController: UIViewController, UITableViewDelegate, UITableVi
     // MARK:  UISearchResultUpdating
     
     func updateSearchResults(for searchController: UISearchController) {
-        filteredDataSource = dataSource.filter( { (model) in
+        filteredDataSource = DataManager.shared.data.filter( { (model) in
             return model.name.lowercased().contains(searchController.searchBar.text!.lowercased())})
         resultsTableView.tableView.reloadData()
     }

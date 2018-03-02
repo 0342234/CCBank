@@ -40,7 +40,6 @@
 		09A766C3201B6279009534C0 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A766C2201B6279009534C0 /* FirebaseReference.swift */; };
 		09A766C5201B6280009534C0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A766C4201B6280009534C0 /* UserModel.swift */; };
 		09A766C7201B676B009534C0 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A766C6201B676B009534C0 /* ChannelsViewController.swift */; };
-		09B9113B2046DFE000E96C95 /* WidthCalculationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B9113A2046DFE000E96C95 /* WidthCalculationExtension.swift */; };
 		09BB1EFB1FFE903B00A15C1E /* SelectedHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BB1EFA1FFE903B00A15C1E /* SelectedHistoryController.swift */; };
 		09CA3ACC200632E000C35C26 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CA3ACA200632E000C35C26 /* HistoryTableViewCell.swift */; };
 		09CA3ACD200632E000C35C26 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09CA3ACB200632E000C35C26 /* HistoryTableViewCell.xib */; };
@@ -98,7 +97,6 @@
 		09A766C2201B6279009534C0 /* FirebaseReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		09A766C4201B6280009534C0 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		09A766C6201B676B009534C0 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
-		09B9113A2046DFE000E96C95 /* WidthCalculationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthCalculationExtension.swift; sourceTree = "<group>"; };
 		09BB1EFA1FFE903B00A15C1E /* SelectedHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedHistoryController.swift; sourceTree = "<group>"; };
 		09CA3ACA200632E000C35C26 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		09CA3ACB200632E000C35C26 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -293,7 +291,6 @@
 				096BF75A2023793C00E98854 /* RoundButton.swift */,
 				096BF75C2024746600E98854 /* ClosureInit.swift */,
 				0903D19D2029F40400C0C5F5 /* ViewFromNib.swift */,
-				09B9113A2046DFE000E96C95 /* WidthCalculationExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -506,7 +503,6 @@
 				0963E7A6204023F3009C2A43 /* SaveListViewController.swift in Sources */,
 				09FA745A20444F410009AC2E /* ThreadFunctions.swift in Sources */,
 				096BF755202209B800E98854 /* MessageTableViewCell.swift in Sources */,
-				09B9113B2046DFE000E96C95 /* WidthCalculationExtension.swift in Sources */,
 				09E690111FF681F300B2A0C1 /* PersistenceService.swift in Sources */,
 				09A766BF201B6261009534C0 /* LoginViewController.swift in Sources */,
 				09CD6FE62018901800878E03 /* FavoriteCurrencies+CoreDataProperties.swift in Sources */,

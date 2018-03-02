@@ -12,4 +12,5 @@ import CoreData
 @objc(FavoriteCurrencies)
 public class FavoriteCurrencies: NSManagedObject {
 
+
 }
