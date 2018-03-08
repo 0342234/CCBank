@@ -2,7 +2,7 @@
 //  CurrencyModel+CoreDataClass.swift
 //  
 //
-//  Created by Yaroslav Bosenko on 2/19/18.
+//  Created by Yaroslav Bosenko on 08.03.2018.
 //
 //
 

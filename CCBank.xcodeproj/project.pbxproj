@@ -25,6 +25,8 @@
 		096BF756202209B800E98854 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 096BF754202209B800E98854 /* MessageTableViewCell.xib */; };
 		096BF75B2023793C00E98854 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096BF75A2023793C00E98854 /* RoundButton.swift */; };
 		096BF75D2024746600E98854 /* ClosureInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096BF75C2024746600E98854 /* ClosureInit.swift */; };
+		096EB8BE2050D66100C4B522 /* CurrencyModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096EB8BC2050D66100C4B522 /* CurrencyModel+CoreDataClass.swift */; };
+		096EB8BF2050D66100C4B522 /* CurrencyModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096EB8BD2050D66100C4B522 /* CurrencyModel+CoreDataProperties.swift */; };
 		097CF15F1FED0D0F00202FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097CF15E1FED0D0F00202FCD /* AppDelegate.swift */; };
 		097CF1611FED0D0F00202FCD /* CurrenciesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097CF1601FED0D0F00202FCD /* CurrenciesListController.swift */; };
 		097CF1641FED0D0F00202FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 097CF1621FED0D0F00202FCD /* Main.storyboard */; };
@@ -55,8 +57,6 @@
 		09DD6239202B6EBF00A12372 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DD6238202B6EBF00A12372 /* MessageModel.swift */; };
 		09DF5DF5200F989300027E39 /* AnimateLableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DF5DF4200F989300027E39 /* AnimateLableExtension.swift */; };
 		09E690111FF681F300B2A0C1 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E690101FF681F300B2A0C1 /* PersistenceService.swift */; };
-		09F8DDA8203ADC0E0007322A /* CurrencyModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F8DDA6203ADC0D0007322A /* CurrencyModel+CoreDataClass.swift */; };
-		09F8DDA9203ADC0E0007322A /* CurrencyModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F8DDA7203ADC0D0007322A /* CurrencyModel+CoreDataProperties.swift */; };
 		09FA745A20444F410009AC2E /* ThreadFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FA745920444F410009AC2E /* ThreadFunctions.swift */; };
 		D2FEDE8552D3CE5A343454F2 /* Pods_CCBank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF4CEA1C7155468ED2865172 /* Pods_CCBank.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +80,8 @@
 		096BF754202209B800E98854 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		096BF75A2023793C00E98854 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		096BF75C2024746600E98854 /* ClosureInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureInit.swift; sourceTree = "<group>"; };
+		096EB8BC2050D66100C4B522 /* CurrencyModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CurrencyModel+CoreDataClass.swift"; path = "/Users/yaroslavbosenko/Documents/CCBankCRACKED/CCBank/Models/CoreDataModels/CurrencyModel+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		096EB8BD2050D66100C4B522 /* CurrencyModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CurrencyModel+CoreDataProperties.swift"; path = "/Users/yaroslavbosenko/Documents/CCBankCRACKED/CCBank/Models/CoreDataModels/CurrencyModel+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		097CF15B1FED0D0F00202FCD /* CCBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		097CF15E1FED0D0F00202FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		097CF1601FED0D0F00202FCD /* CurrenciesListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListController.swift; sourceTree = "<group>"; };
@@ -112,8 +114,6 @@
 		09DD6238202B6EBF00A12372 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		09DF5DF4200F989300027E39 /* AnimateLableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateLableExtension.swift; sourceTree = "<group>"; };
 		09E690101FF681F300B2A0C1 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
-		09F8DDA6203ADC0D0007322A /* CurrencyModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CurrencyModel+CoreDataClass.swift"; path = "/Users/yaroslavbosenko/Developer/CCBank/CCBank/Models/CoreDataModels/CurrencyModel+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		09F8DDA7203ADC0D0007322A /* CurrencyModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CurrencyModel+CoreDataProperties.swift"; path = "/Users/yaroslavbosenko/Developer/CCBank/CCBank/Models/CoreDataModels/CurrencyModel+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		09FA745920444F410009AC2E /* ThreadFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadFunctions.swift; sourceTree = "<group>"; };
 		11AA3B39255B4E950C0E6EAE /* Pods-CCBank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CCBank.release.xcconfig"; path = "Pods/Target Support Files/Pods-CCBank/Pods-CCBank.release.xcconfig"; sourceTree = "<group>"; };
 		DF4CEA1C7155468ED2865172 /* Pods_CCBank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CCBank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,8 +164,8 @@
 		093BAF96200920F200E5E6C7 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
-				09F8DDA6203ADC0D0007322A /* CurrencyModel+CoreDataClass.swift */,
-				09F8DDA7203ADC0D0007322A /* CurrencyModel+CoreDataProperties.swift */,
+				096EB8BC2050D66100C4B522 /* CurrencyModel+CoreDataClass.swift */,
+				096EB8BD2050D66100C4B522 /* CurrencyModel+CoreDataProperties.swift */,
 				09CD6FE32018901700878E03 /* GroupedCurrencies+CoreDataClass.swift */,
 				09CD6FE22018901700878E03 /* GroupedCurrencies+CoreDataProperties.swift */,
 				09CD6FE52018901800878E03 /* FavoriteCurrencies+CoreDataClass.swift */,
@@ -498,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				096BF75B2023793C00E98854 /* RoundButton.swift in Sources */,
+				096EB8BE2050D66100C4B522 /* CurrencyModel+CoreDataClass.swift in Sources */,
 				09A766BD201B625B009534C0 /* SignUpViewController.swift in Sources */,
 				09D7ADCC1FED292A00EF6684 /* CurrenciesListTableViewCell.swift in Sources */,
 				0963E7A6204023F3009C2A43 /* SaveListViewController.swift in Sources */,
@@ -512,8 +513,8 @@
 				09DF5DF5200F989300027E39 /* AnimateLableExtension.swift in Sources */,
 				09CD6FEB2018901800878E03 /* FavoriteCurrencies+CoreDataClass.swift in Sources */,
 				09DD6237202B6E7000A12372 /* ThreadModel .swift in Sources */,
+				096EB8BF2050D66100C4B522 /* CurrencyModel+CoreDataProperties.swift in Sources */,
 				093ED59D1FFBE5C50043EB9A /* InitialScreenController.swift in Sources */,
-				09F8DDA9203ADC0E0007322A /* CurrencyModel+CoreDataProperties.swift in Sources */,
 				097CF1611FED0D0F00202FCD /* CurrenciesListController.swift in Sources */,
 				09387124201B429E00F0D3F1 /* InternetReachability.swift in Sources */,
 				09A766C3201B6279009534C0 /* FirebaseReference.swift in Sources */,
@@ -527,7 +528,6 @@
 				09CA3AD3200635EE00C35C26 /* CurrenciesAPIModel.swift in Sources */,
 				09DD6239202B6EBF00A12372 /* MessageModel.swift in Sources */,
 				097CF15F1FED0D0F00202FCD /* AppDelegate.swift in Sources */,
-				09F8DDA8203ADC0E0007322A /* CurrencyModel+CoreDataClass.swift in Sources */,
 				090840E71FFBA07F0065C2CC /* HistoryViewController.swift in Sources */,
 				090840EA1FFBBC100065C2CC /* SelectedHistoryCell.swift in Sources */,
 				09A766C5201B6280009534C0 /* UserModel.swift in Sources */,
