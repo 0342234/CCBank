@@ -52,7 +52,6 @@ class InitialViewController: UIViewController  {
                 } else {
                     self.performSegue(withIdentifier: "ToLoginPage", sender: nil)
                 }
-                
             }
         }
     }
